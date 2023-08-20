@@ -1,0 +1,34 @@
+version: "3.8"
+services:
+  DB:
+   image: postgres:latest
+   container_name: my_db
+   restart: always
+   ports:
+     - "5432:5432"
+   environment:
+     POSTGRES_DB: postgres
+     POSTGRES_USER: chandan
+     POSTGRES_PASSWORD: chandan
+   volumes:
+     - pgdata:/var/lib/postgresql/data
+   networks:
+     - db_network
+  PGADMIN:
+   image: dpage/pgadmin4:latest
+   container_name: pgadmin
+   ports:
+     - "8080:80"
+   volumes:
+     - pgadmin:/var/lib/pgadmin
+   environment:
+     PGADMIN_DEFAULT_PASSWORD: chandan
+     PGADMIN_DEFAULT_EMAIL: mail2mrcm@gmail.com
+   networks:
+     - db_network
+  
+volumes:
+  pgdata:
+  pgadmin:
+networks:
+  db_network:
