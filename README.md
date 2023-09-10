@@ -4,7 +4,7 @@
 + `docker-compose-postgres-with-backend` - postgres, pgAdmin and spring boot rest containers.
 
 
-docker compose manages 3 containers
+We have 3 containers
 - Database container - **Postgresql**
 - Databse administrator - **PgAdmin**
 - Backend application  -**Spring boot rest api**
