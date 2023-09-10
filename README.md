@@ -49,6 +49,6 @@ Please follow spring boot project for the details and also ```application.proper
 + docker build - **docker build -t <repositoryname/imagename:tag name> ./**
                    docker build mail2mrcm/helloworld-api:latest ./
 + docker push - **docker push <repositoryname/imagename:tag name>**
-                  docker push mail2mrcm/helloworld-api:latest ./
+                  docker push mail2mrcm/helloworld-api:latest
 + docker compose run -  **docker-compose up -d**
 + stop all containers - **docker-compose stop**
