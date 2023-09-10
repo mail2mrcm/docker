@@ -1,4 +1,9 @@
 ### This project is all about deploying various container through docker compose container management tool and create inter communication with in containers
+
++ `docker-compose-postgres` - postgres, pgAdmin containers.
++ `docker-compose-postgres-with-backend` - postgres, pgAdmin and spring boot rest containers.
+
+
 docker compose manages 3 containers
 - Database container - **Postgresql**
 - Databse administrator - **PgAdmin**
