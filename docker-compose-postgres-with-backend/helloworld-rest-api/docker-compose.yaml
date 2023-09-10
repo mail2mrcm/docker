@@ -1,0 +1,55 @@
+version: "3.8"
+services:
+ db:
+  image: postgres:latest
+  container_name: my_db
+  ports:
+   - "5432:5432"
+  networks: 
+   - my_own_nw
+  volumes:
+   - pgdata:/var/lib/postgres
+  environment:
+   POSTGRES_DB: postgres
+   POSTGRES_USER: chandan
+   POSTGRES_PASSWORD: chandan
+  healthcheck:
+   test: ["CMD-SHELL", "sh -c 'pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}'"]    
+   interval: 10s
+   timeout: 3s
+   retries: 2
+ pgadmin:
+  image: dpage/pgadmin4:latest
+  container_name: pgadmin  
+  ports:
+   - "8080:80"
+  volumes:
+   - pgadmindata:/var/lib/pgadmin
+  environment:
+   PGADMIN_DEFAULT_PASSWORD: chandan
+   PGADMIN_DEFAULT_EMAIL: mail2mrcm@gmail.com
+  networks:
+   - my_own_nw
+ backend:
+  image: mail2mrcm/helloworld-api:latest
+  container_name: my_app  
+  environment:
+   DB_HOST_URL: jdbc:postgresql://db:5432/postgres
+   DB_USER: chandan
+   DB_PASSWORD: chandan
+  depends_on:
+   db:
+    condition: service_healthy
+  ports:
+   - "8081:8080"
+  volumes:
+   - appdata:/var/lib/app
+  networks:
+   - my_own_nw
+networks:
+ my_own_nw:
+volumes:
+ pgdata:
+ pgadmindata:
+ appdata:
+ 

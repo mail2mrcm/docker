@@ -1,0 +1,25 @@
+version: "3.8"
+services:     
+  Backend:
+   image: mail2mrcm/helloworld-api:latest
+   container_name: my_app
+   environment:
+    DB_HOST_URL: jdbc:postgresql://DB:5432/postgres
+    DB_USER: chandan
+    DB_PASSWORD: chandan   
+   ports:
+     - "8081:8080"
+   volumes:
+     - appdata:/var/lib/app
+   networks:
+     - app_network   
+networks:
+  db_network:
+  app_network:
+volumes:
+  pgadmindata:
+  pgdata:
+  appdata:
+
+
+    
